@@ -104,6 +104,30 @@ class RequestHandler:
         )
         return response
 
+    def patch(
+        self,
+        url: str,
+        json_body=None,
+        request_timeout: float = settings.REQUEST_TIMEOUT,
+        auth: Optional[tuple] = None,
+        headers: Optional[dict] = None,
+        data: Optional[dict] = None,
+        params: Optional[dict] = None,
+        **kwargs,
+    ) -> Response:
+        response = self.base_request(
+            url=url,
+            method="PATCH",
+            auth=auth,
+            headers=headers,
+            timeout=request_timeout,
+            json_body=json_body,
+            data=data,
+            params=params,
+            **kwargs,
+        )
+        return response
+
     def delete(
         self,
         url: str,
