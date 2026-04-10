@@ -48,14 +48,8 @@ jobs:
         run: |
           pip install -e .[dev]
 
-      - name: Test with pytest
-        run: |
-          pytest
-        env:
-          ENVIRONMENT: local
-          ISAR_ENV: test
-
       - name: Run black
+        if: ${{matrix.python-version == '3.14'}}
         run: |
           black --check .
 
@@ -70,3 +64,10 @@ jobs:
       - name: Run ruff
         run: |
           ruff check .
+
+      - name: Test with pytest
+        run: |
+          pytest
+        env:
+          ENVIRONMENT: local
+          ISAR_ENV: test
